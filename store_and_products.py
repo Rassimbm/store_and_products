@@ -3,3 +3,10 @@ class Store:
     def __init__(self, name):
         self.name = name
         self.products = []
+
+# Next, create a Product class that has 3 attributes: a name, a price, and a category. All of these should be provided upon creation.
+class Product:
+    def __init__(self, name, price, category):
+        self.name = name
+        self.price = price
+        self.category = category
