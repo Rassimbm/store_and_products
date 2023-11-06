@@ -17,6 +17,14 @@ class Store:
     def print_info(self):
         print(f"Your store {self.name} has {len(self.products)} product(s): {self.products}")
         return self
+# sell_product(self, id) - remove the product from the store's list of products given the id (assume id is the index of the product in the list) and print its info.
+    def sell_product(self, id):
+        if id < 0 or id >= len(self.products):
+            print(f"Invalid product index!!!")
+        else:
+            sold_product = self.products.pop(id)
+            print(f"{sold_product} has been sold.")
+        return self
 
 
 # Next, create a Product class that has 3 attributes: a name, a price, and a category. All of these should be provided upon creation.
@@ -42,8 +50,8 @@ class Product:
     
 s_1 = Store("White Night")
 
-s_1.add_product("Ramy").print_info().add_product("Domino").print_info()
+s_1.add_product("Ramy").print_info().add_product("Domino").print_info().sell_product(0)
 
-p_1 = Product("Bino", 49.99, "Board Game")
+# p_1 = Product("Bino", 49.99, "Board Game")
 
-p_1.print_info().update_price(15, True).print_info()
+# p_1.print_info().update_price(15, True).print_info()
