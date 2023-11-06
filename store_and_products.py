@@ -20,3 +20,10 @@ class Product:
         else:
             self.price -= (self.price * percent_change) / 100
         return self
+# print_info(self) - print the name of the product, its category, and its price.
+    def print_info(self):
+        print(f"Name: {self.name}\nPrice: ${self.price}\nCategory: {self.category}")
+        return self
+
+p_1 = Product("Bino", 49.99, "Board Game")
+p_1.print_info().update_price(15, True).print_info()
