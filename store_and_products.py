@@ -10,3 +10,13 @@ class Product:
         self.name = name
         self.price = price
         self.category = category
+
+# Let's give some methods to our Product class:
+
+# update_price(self, percent_change, is_increased) - updates the product's price. If is_increased is True, the price should increase by the percent_change provided. If False, the price should decrease by the percent_change provided.
+    def update_price(self, percent_change, is_increased):
+        if is_increased:
+            self.price += (self.price * percent_change) / 100
+        else:
+            self.price -= (self.price * percent_change) / 100
+        return self
