@@ -27,7 +27,11 @@ class Store:
             product.update_price(percent_increase, True)
         return self
 # set_clearance(self, category, percent_discount) - updates all the products matching the given category by reducing the price by the percent_discount given (use the method you wrote in the Product class!)
-
+    def set_clearance(self, category, percent_discount):
+        for product in self.products:
+            if product.category == category:
+                product.update_price(percent_discount, False)
+        return self
 # Next, create a Product class that has 3 attributes: a name, a price, and a category. All of these should be provided upon creation.
 class Product:
     def __init__(self, name, price, category):
@@ -46,7 +50,7 @@ class Product:
         return self
 # print_info(self) - print the name of the product, its category, and its price.
     def print_info(self):
-        print(f"Name: {self.name}\nPrice: ${self.price}\nCategory: {self.category}\n")
+        print(f"Name: {self.name}\nPrice: ${self.price:.2f}\nCategory: {self.category}\n")
         return self
 
 if __name__ == "__main__":
@@ -56,7 +60,7 @@ if __name__ == "__main__":
     product_2 = Product("Ramy", 9.99, "Cards Game")
     product_3 = Product("Dominoes", 14.99, "Scoring Game")
 
-    my_store.add_product(product_1).add_product(product_2).add_product(product_3).sell_product(2).inflation(12)
+    my_store.add_product(product_1).add_product(product_2).add_product(product_3).sell_product(2).inflation(12).set_clearance(product_1.category, 25)
     
     for product in my_store.products:
         product.print_info()
