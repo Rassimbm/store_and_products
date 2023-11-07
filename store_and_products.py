@@ -13,19 +13,20 @@ class Store:
         else:
             print(f"The store: {self.name} already has a product named {new_product}")
         return self
-    
-    def print_info(self):
-        print(f"Your store {self.name} has {len(self.products)} product(s): {self.products}")
-        return self
 # sell_product(self, id) - remove the product from the store's list of products given the id (assume id is the index of the product in the list) and print its info.
     def sell_product(self, id):
-        if id < 0 or id >= len(self.products):
-            print(f"Invalid product index!!!")
-        else:
+        if id >= 0 or id <= len(self.products):
             sold_product = self.products.pop(id)
-            print(f"{sold_product} has been sold.")
+            sold_product.print_info()
+        else:
+            print(f"Invalid product ID!!!")
         return self
-
+# inflation(self, percent_increase) - increases the price of each product by the percent_increase given (use the method you wrote in the Product class!)
+    def inflation(self, percent_increase):
+        for product in self.products:
+            product.update_price(percent_increase, True)
+        return self
+# set_clearance(self, category, percent_discount) - updates all the products matching the given category by reducing the price by the percent_discount given (use the method you wrote in the Product class!)
 
 # Next, create a Product class that has 3 attributes: a name, a price, and a category. All of these should be provided upon creation.
 class Product:
@@ -45,13 +46,17 @@ class Product:
         return self
 # print_info(self) - print the name of the product, its category, and its price.
     def print_info(self):
-        print(f"Name: {self.name}\nPrice: ${self.price}\nCategory: {self.category}")
+        print(f"Name: {self.name}\nPrice: ${self.price}\nCategory: {self.category}\n")
         return self
+
+if __name__ == "__main__":
+    my_store = Store("White Night")
+
+    product_1 = Product("Bino", 19.99, "Board Game")
+    product_2 = Product("Ramy", 9.99, "Cards Game")
+    product_3 = Product("Dominoes", 14.99, "Scoring Game")
+
+    my_store.add_product(product_1).add_product(product_2).add_product(product_3).sell_product(2).inflation(12)
     
-s_1 = Store("White Night")
-
-s_1.add_product("Ramy").print_info().add_product("Domino").print_info().sell_product(0)
-
-# p_1 = Product("Bino", 49.99, "Board Game")
-
-# p_1.print_info().update_price(15, True).print_info()
+    for product in my_store.products:
+        product.print_info()
